@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "resolveJsonModule": true,
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "plugins": [{ "transform": "typescript-transform-paths" }],
+    "paths": {
+      "@decorators/*": ["src/decorators/*"],
+      "@examples/*": ["src/examples/*"],
+      "@view-schema/*": ["src/view-schema/*"],
+      "@view-schema": ["src/view-schema"],
+      "@view/*": ["src/view/*"],
+      "@view": ["src/view"],
+      "@helpers/*": ["src/helpers/*"],
+      "@helpers": ["src/helpers"],
+      "@utils/*": ["src/utils/*"],
+      "@interceptors/*": ["src/pipe/*"],
+      "@nest-view": ["src"]
+    }
+  }
+}
