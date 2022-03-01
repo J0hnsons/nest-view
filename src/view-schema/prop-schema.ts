@@ -3,6 +3,7 @@ import { SchemaObject } from '@nestjs/swagger/dist/interfaces/open-api-spec.inte
 import { arraySchema } from './array-schema';
 import { objectSchema } from './object-schema';
 
+//Set schema type of non-object variable
 function setType(type: Function) {
   if (type == Date)
     return {
@@ -14,6 +15,7 @@ function setType(type: Function) {
   };
 }
 
+//Make schema of a gived variable object
 export function propSchema({ type, config }: propMaker): SchemaObject {
   const { path, required, ...options } = config;
   if (Array.isArray(type)) {

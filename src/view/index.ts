@@ -9,6 +9,7 @@ export interface viewLog {
   viewName: string;
 }
 
+// Log object used to show information if error occur when create a object
 function setViewLog(newKey: string | number, viewLog: viewLog): viewLog {
   if (!newKey) return viewLog;
   return {
@@ -16,6 +17,7 @@ function setViewLog(newKey: string | number, viewLog: viewLog): viewLog {
     keyPath: [viewLog.keyPath, newKey].filter((key) => key).join('.'),
   };
 }
+// Get data in object by the gived path
 export function getDataByPath(data: any, path: string | string[]) {
   for (const p of Array.isArray(path) ? path : [path]) {
     let aux = Object.assign({}, data);
@@ -26,6 +28,10 @@ export function getDataByPath(data: any, path: string | string[]) {
   }
   return null;
 }
+
+// Get data of a variable in object
+// If variable have path set in config try to get data by the gived path
+// If don`t have a path or path dont return a value, data will be get by the key
 export function getDatabyKeyOrPath(
   data: any,
   key: string | number,
@@ -41,7 +47,13 @@ export function getDatabyKeyOrPath(
   return { data: data?.[key], viewLog: setViewLog(key, viewLog) };
 }
 
-export function view<T=any>(view: Type | (Type | Type[])[], data: any): T {
+/**
+ *
+ * @param view
+ * @param data
+ * @returns
+ */
+export function view<T = any>(view: Type | (Type | Type[])[], data: any): T {
   const viewObject = maker(view);
   const viewLog: viewLog = {
     viewName: (<Function>view).name,

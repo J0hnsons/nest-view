@@ -11,7 +11,16 @@ interface apiResponseOptions extends Omit<ResponseObject, 'description'> {
   description?: string;
 }
 interface apiResponseView<T> {
+  /**
+   * Decorate a method creating schema of response view
+   * @param type View class
+   */
   (type: viewType): MethodDecorator & ClassDecorator;
+
+  /**
+   * Decorate a method creating schema of response view
+   * @param options Options to create a schema
+   */
   (options: T): MethodDecorator & ClassDecorator;
 }
 
@@ -26,11 +35,11 @@ export const ApiResponseView: apiResponseView<apiResponseOptions> = (
     const { view } = data;
     delete data.view;
     options = {
-      schema: viewToSchema(view, 'normalizeResponse'),
+      schema: viewToSchema(view, 'patternResponse'),
       ...data,
     };
   } else {
-    options.schema = viewToSchema(data, 'normalizeResponse');
+    options.schema = viewToSchema(data, 'patternResponse');
   }
   return applyDecorators(ApiResponse(options));
 };

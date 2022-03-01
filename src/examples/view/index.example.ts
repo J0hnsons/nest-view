@@ -8,7 +8,7 @@ class ArrayMakerAux {
 
 @View()
 export class Example {
-  @PropView({ type: ArrayMakerAux, path: 'extra' })
+  @PropView({ type: ArrayMakerAux, path: 'extra.data' })
   test1: ArrayMakerAux;
   @PropView(rawView({ test1: { type: Boolean }, test2: { type: Boolean } }))
   test2: Record<'test' | 'test2', boolean>;
@@ -20,7 +20,9 @@ export class Example {
 
 export const data = {
   extra: {
-    test: true,
+    data: {
+      test: true,
+    },
   },
   test2: {
     test1: 'false',

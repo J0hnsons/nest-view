@@ -8,21 +8,27 @@ export class ViewOptions {
    *
    * @param view A Processed view return
    */
-  normalizeBody?: (view: SchemaObject) => SchemaObject;
+  patternBody?: (view: SchemaObject) => SchemaObject;
   /**
    * Set a pattern to all app responses
    *
    * @param view A Processed view return
    */
-  normalizeResponse?: (view: SchemaObject) => SchemaObject;
+  patternResponse?: (view: SchemaObject) => SchemaObject;
   /**
    * Set a pattern to all app exceptions
    *
    * @param view A Processed view return
    */
-  normalizeException?: (view: SchemaObject) => SchemaObject;
+  patternException?: (view: SchemaObject) => SchemaObject;
 }
 
+/**
+ * Decorator that set class as a view
+ *
+ * @param options Possible options to create a view
+ * @returns Decorate function of a view
+ */
 export function View(options: ViewOptions = {}) {
   return (target: any) => {
     target = Reflect.decorate(

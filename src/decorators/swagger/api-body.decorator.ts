@@ -9,12 +9,25 @@ import { viewToSchema } from '@view-schema';
 type viewType = Type | (Type | Type[])[];
 
 interface apiBodyOptions extends RequestBodyObject {
+  /**
+   * View class
+   */
   view: viewType;
+
   enum?: SwaggerEnumType;
   examples?: ExamplesObject;
 }
 interface apiBodyView {
+  /**
+   * Decorate a method creating schema of body view
+   * @param type View class
+   */
   (type: viewType): MethodDecorator & ClassDecorator;
+
+  /**
+   * Decorate a method creating schema of body view
+   * @param options Options to create a schema
+   */
   (options: apiBodyOptions): MethodDecorator & ClassDecorator;
 }
 export const ApiBodyView: apiBodyView = (...args: any[]) => {
@@ -26,11 +39,11 @@ export const ApiBodyView: apiBodyView = (...args: any[]) => {
     const { view } = data;
     delete data.view;
     options = {
-      schema: viewToSchema(view, 'normalizeBody'),
+      schema: viewToSchema(view, 'patternBody'),
       ...data,
     };
   } else {
-    options.schema = viewToSchema(data, 'normalizeBody');
+    options.schema = viewToSchema(data, 'patternBody');
   }
   return applyDecorators(ApiBody(options));
 };

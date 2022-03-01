@@ -1,18 +1,18 @@
-import { possibleTypes } from '@decorators/view';
+import { constructors } from '@decorators/view';
 import { propMaker } from '@helpers/prop-maker';
 import { viewLog } from '.';
 import { arrayView } from './array-view';
 import { objectView } from './object-view';
 
-//TODO: Make path work
-
-function convertData(type: possibleTypes, data: any) {
+//Convert variable data to correct variable type
+function convertData(type: constructors, data: any) {
   if (type == Date) return new Date(data);
   if (type == Boolean)
     return ![null, undefined, NaN, '', 'false'].includes(data);
   return type(data);
 }
 
+//Throw an error if data is required and variable dont have value
 function verifyData(
   data: any,
   required: boolean,
@@ -23,6 +23,7 @@ function verifyData(
   }
 }
 
+//Set formated variable data
 export function propView(
   { type, config }: propMaker,
   data: any,

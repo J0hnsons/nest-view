@@ -2,6 +2,7 @@ import { propMaker } from '@helpers/prop-maker';
 import { getDatabyKeyOrPath, viewLog } from '.';
 import { propView } from './prop-view';
 
+//Format gived data like a object view structure
 export function objectView(
   _type: Record<string, propMaker>,
   _data: any,

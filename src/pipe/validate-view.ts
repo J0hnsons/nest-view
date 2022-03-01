@@ -7,6 +7,12 @@ import {
 } from '@nestjs/common';
 import { view } from '..';
 
+/**
+ * Create a pipe to validate a body based on gived view
+ *
+ * @param type View class
+ * @returns Pipe used to validate a body
+ */
 export function validateView(type: Type | Type[]) {
   return class ValidateViewPipe
     implements PipeTransform<any, Promise<typeof type>>

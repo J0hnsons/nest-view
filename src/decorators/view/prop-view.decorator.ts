@@ -13,17 +13,23 @@ type exclude =
   | 'additionalProperties'
   | 'patternProperties'
   | 'required';
-export type possibleTypes =
+export type constructors =
   | StringConstructor
   | BooleanConstructor
   | NumberConstructor
   | DateConstructor;
 export interface PropViewOptions extends Omit<SchemaObject, exclude> {
-  type: possibleTypes | Type | (possibleTypes | Type)[];
+  type: constructors | Type | (constructors | Type)[];
   path?: string | string[];
   required?: boolean;
 }
 
+/**
+ * Decorate a prop to make a data object or a Schema object of a view
+ *
+ * @param options Options to create a prop
+ * @returns Decorator that return type and configuration of a prop
+ */
 export function PropView(
   options: PropViewOptions | ReturnType<typeof rawView>
 ) {
