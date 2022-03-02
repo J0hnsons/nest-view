@@ -8,7 +8,7 @@
     "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "outDir": "./lib",
+    "outDir": "./src",
     "baseUrl": "./",
     "strict": true,
     "skipLibCheck": true,
@@ -18,8 +18,8 @@
     "noFallthroughCasesInSwitch": false,
     "plugins": [{ "transform": "typescript-transform-paths" }],
     "paths": {
-      "@nest-view": ["src"],
-      "@nest-view/*": ["src/*"]
+      "@nest-view": ["lib"],
+      "@nest-view/*": ["lib/*"]
     }
   }
 }

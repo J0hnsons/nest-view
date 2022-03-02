@@ -4,11 +4,10 @@
   "description": "Module created to make ease data manipulation in Nestjs",
   "author": "j0hnsons",
   "license": "MIT",
-  "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
-    "lib/**/*"
+    "dist"
   ],
   "repository": {
     "type": "git",
@@ -22,10 +21,10 @@
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf src",
     "build": "tsc -p ./tsconfig.build.json",
     "test": "jest",
-    "test:app": "rimraf dist && nest start --watch",
+    "test:app": "rimraf src && nest start --watch",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.build.json"
   },
