@@ -1,3 +1,4 @@
-src
-@types
+dist
+index.d.ts
+index.js
 node_modules

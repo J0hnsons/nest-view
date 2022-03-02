@@ -1,4 +1,10 @@
 {
+  "compilerOptions": {
+    "paths": {
+      "@nest-view": ["src"],
+      "@nest-view/*": ["src/*"]
+    }
+  },
   "extends": "./tsconfig.json",
   "include": ["test/app"]
 }

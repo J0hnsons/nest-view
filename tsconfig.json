@@ -8,18 +8,15 @@
     "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "outDir": "./src",
-    "baseUrl": "./",
-    "strict": true,
+    "outDir": "./dist",
+    "rootDir": "./",
     "skipLibCheck": true,
     "strictNullChecks": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "plugins": [{ "transform": "typescript-transform-paths" }],
-    "paths": {
-      "@nest-view": ["lib"],
-      "@nest-view/*": ["lib/*"]
-    }
-  }
+    "plugins": [{ "transform": "typescript-transform-paths" }]
+  },
+  "include": ["src", "index.ts"],
+  "exclude": ["**/*.spec.ts", "src/examples", "node_modules"]
 }
