@@ -4,7 +4,7 @@
   "description": "Module created to make ease data manipulation in Nestjs",
   "author": "j0hnsons",
   "license": "MIT",
-  "type": "module",
+  "type": "commonjs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
