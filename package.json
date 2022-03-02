@@ -1,6 +1,6 @@
 {
   "name": "nest-view",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Module created to make ease data manipulation in Nestjs",
   "author": "j0hnsons",
   "license": "MIT",
