@@ -1,5 +1,6 @@
 function moduleNameMapper() {
   const { paths } = require('./tsconfig.json').compilerOptions;
+  if (!paths) return undefined;
   const map = {};
   for (const [key, [value]] of Object.entries(paths)) {
     map[key.replace('/*', '/(.*)')] = `<rootDir>${value.replace('/*', '/$1')}`;
