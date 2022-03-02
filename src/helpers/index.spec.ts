@@ -1,4 +1,4 @@
-import { Example, testResult } from '@examples/helpers/index.example';
+import { Example, testResult } from '../examples/helpers/index.example';
 import { maker } from '.';
 
 describe('Testing maker...', () => {

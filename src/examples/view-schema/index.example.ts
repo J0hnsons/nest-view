@@ -1,6 +1,6 @@
 import { SchemaObject } from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
-import { PropView, View } from '@decorators/view';
-import { rawView } from '@utils/raw-view';
+import { PropView, View } from '../../decorators/view';
+import { rawView } from '../../utils/raw-view';
 @View()
 class ArrayMakerAux {
   @PropView({ type: String })

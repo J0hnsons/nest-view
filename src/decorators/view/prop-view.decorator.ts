@@ -1,8 +1,8 @@
 import { SchemaObject } from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
 import { Type } from '@nestjs/common';
-import { propMaker } from '@helpers/prop-maker';
-import { rawView } from '@utils/raw-view';
-import { symbols } from '@helpers/enums/view-symbols';
+import { propMaker } from '../../helpers/prop-maker';
+import { rawView } from '../../utils/raw-view';
+import { symbols } from '../../helpers/enums/view-symbols';
 type exclude =
   | 'type'
   | 'allOf'
@@ -31,7 +31,7 @@ export interface PropViewOptions extends Omit<SchemaObject, exclude> {
  * @returns Decorator that return type and configuration of a prop
  */
 export function PropView(
-  options: PropViewOptions | ReturnType<typeof rawView>
+  options: PropViewOptions | ReturnType<typeof rawView>,
 ) {
   return (target, propertieKey) => {
     Reflect.set(target, propertieKey, () => {

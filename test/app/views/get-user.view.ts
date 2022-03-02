@@ -1,4 +1,4 @@
-import { View, PropView } from '@decorators/view';
+import { View, PropView } from '@nest-view/decorators/view';
 
 @View()
 export class UserView {

@@ -1,4 +1,4 @@
-import { Example, data, testResult } from '@examples/view/index.example';
+import { Example, data, testResult } from '../examples/view/index.example';
 import { view } from '.';
 
 describe('Testing maker...', () => {

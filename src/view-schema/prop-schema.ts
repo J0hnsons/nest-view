@@ -1,11 +1,11 @@
-import { propMaker } from '@helpers/prop-maker';
+import { propMaker } from '../helpers/prop-maker';
 import { SchemaObject } from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
 import { arraySchema } from './array-schema';
 import { objectSchema } from './object-schema';
 
-//Set schema type of non-object variable
-function setType(type: Function) {
-  if (type == Date)
+// Set schema type of non-object variable
+function setType(type: () => void) {
+  if (type === Date)
     return {
       type: 'string',
       format: 'date-time',
@@ -15,7 +15,7 @@ function setType(type: Function) {
   };
 }
 
-//Make schema of a gived variable object
+// Make schema of a gived variable object
 export function propSchema({ type, config }: propMaker): SchemaObject {
   const { path, required, ...options } = config;
   if (Array.isArray(type)) {

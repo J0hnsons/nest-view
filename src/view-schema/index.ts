@@ -1,5 +1,5 @@
-import { ViewOptions } from '@decorators/view/view.decorator';
-import { maker } from '@helpers';
+import { ViewOptions } from '../decorators/view';
+import { maker } from '../helpers';
 import { Type } from '@nestjs/common';
 import { arraySchema } from './array-schema';
 import { propSchema } from './prop-schema';
@@ -13,7 +13,7 @@ import { propSchema } from './prop-schema';
  */
 export function viewToSchema(
   view: Type | (Type | Type[])[],
-  pattern?: keyof ViewOptions
+  pattern?: keyof ViewOptions,
 ) {
   const viewObject = maker(view);
   if (Array.isArray(viewObject)) return arraySchema(viewObject);

@@ -1,6 +1,6 @@
-import { PropViewOptions } from '@decorators/view/prop-view.decorator';
-import { symbols } from '@helpers/enums/view-symbols';
-import { propMaker } from '@helpers/prop-maker';
+import { PropViewOptions } from '../decorators/view';
+import { symbols } from '../helpers/enums/view-symbols';
+import { propMaker } from '../helpers/prop-maker';
 
 /**
  * Another options to create a view pass a object of prop options
@@ -11,7 +11,7 @@ import { propMaker } from '@helpers/prop-maker';
  */
 export function rawView(
   object: Record<string, PropViewOptions>,
-  config: Omit<PropViewOptions, 'type'> = {}
+  config: Omit<PropViewOptions, 'type'> = {},
 ) {
   const type = {};
   for (const [key, prop] of Object.entries(object)) {

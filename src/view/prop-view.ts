@@ -1,33 +1,33 @@
-import { constructors } from '@decorators/view';
-import { propMaker } from '@helpers/prop-maker';
-import { viewLog } from '.';
+import { constructors } from '../decorators/view';
+import { propMaker } from '../helpers/prop-maker';
+import { ViewLog } from '.';
 import { arrayView } from './array-view';
 import { objectView } from './object-view';
 
-//Convert variable data to correct variable type
+// Convert variable data to correct variable type
 function convertData(type: constructors, data: any) {
-  if (type == Date) return new Date(data);
-  if (type == Boolean)
+  if (type === Date) return new Date(data);
+  if (type === Boolean)
     return ![null, undefined, NaN, '', 'false'].includes(data);
   return type(data);
 }
 
-//Throw an error if data is required and variable dont have value
+// Throw an error if data is required and variable dont have value
 function verifyData(
   data: any,
   required: boolean,
-  { keyPath, viewName }: viewLog
+  { keyPath, viewName }: ViewLog,
 ) {
   if ([null, undefined, NaN, '', 'false'].includes(data) && required) {
     throw new Error(`Missing "${keyPath}" in "${viewName}"`);
   }
 }
 
-//Set formated variable data
+// Set formated variable data
 export function propView(
   { type, config }: propMaker,
   data: any,
-  viewLog: viewLog
+  viewLog: ViewLog,
 ) {
   verifyData(data, config?.required, viewLog);
   if (Array.isArray(type)) {

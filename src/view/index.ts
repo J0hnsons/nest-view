@@ -1,16 +1,16 @@
-import { maker } from '@helpers';
-import { propMaker } from '@helpers/prop-maker';
+import { maker } from '../helpers';
+import { propMaker } from '../helpers/prop-maker';
 import { Type } from '@nestjs/common';
 import { arrayView } from './array-view';
 import { propView } from './prop-view';
 
-export interface viewLog {
+export interface ViewLog {
   keyPath: string;
   viewName: string;
 }
 
 // Log object used to show information if error occur when create a object
-function setViewLog(newKey: string | number, viewLog: viewLog): viewLog {
+function setViewLog(newKey: string | number, viewLog: ViewLog): ViewLog {
   if (!newKey) return viewLog;
   return {
     ...viewLog,
@@ -35,8 +35,8 @@ export function getDataByPath(data: any, path: string | string[]) {
 export function getDatabyKeyOrPath(
   data: any,
   key: string | number,
-  viewLog: viewLog,
-  config?: propMaker['config']
+  viewLog: ViewLog,
+  config?: propMaker['config'],
 ) {
   if (config?.path) {
     const dataByPath = getDataByPath(data, config.path);
@@ -53,10 +53,13 @@ export function getDatabyKeyOrPath(
  * @param data
  * @returns
  */
-export function view<T = any>(view: Type | (Type | Type[])[], data: any): T {
-  const viewObject = maker(view);
-  const viewLog: viewLog = {
-    viewName: (<Function>view).name,
+export function view<T = any>(
+  viewType: Type | (Type | Type[])[],
+  data: any,
+): T {
+  const viewObject = maker(viewType);
+  const viewLog: ViewLog = {
+    viewName: (viewType as Type).name,
     keyPath: '',
   };
   if (Array.isArray(viewObject)) return arrayView(viewObject, data, viewLog);

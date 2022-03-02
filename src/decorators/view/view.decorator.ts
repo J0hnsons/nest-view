@@ -1,8 +1,8 @@
 import { SchemaObject } from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
 import { Type } from '@nestjs/common';
-import { symbols } from '@helpers/enums/view-symbols';
+import { symbols } from '../../helpers/enums/view-symbols';
 
-export class ViewOptions {
+export interface ViewOptions {
   /**
    * Set a pattern to all received body
    *
@@ -35,17 +35,17 @@ export function View(options: ViewOptions = {}) {
       [
         Reflect.metadata(symbols.view, true),
         Reflect.metadata(symbols.options, options),
-        (target: Type) => {
-          return class extends target {
+        (t: any) => {
+          return class extends t {
             [symbols.propsKey]() {
-              return Reflect.ownKeys(target.prototype).filter(
-                (key) => !['constructor', symbols.propsKey].includes(key)
+              return Reflect.ownKeys(t.prototype).filter(
+                (key) => !['constructor', symbols.propsKey].includes(key),
               );
             }
           };
         },
       ],
-      target
+      target,
     );
     return target;
   };

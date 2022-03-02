@@ -19,7 +19,7 @@ export function validateView(type: Type | Type[]) {
   {
     async transform(
       value: any,
-      _metadata: ArgumentMetadata
+      _metadata: ArgumentMetadata,
     ): Promise<typeof type> {
       if (Array.isArray(type) && type.length > 1)
         return this.ifOneReturn(type.map((item) => this.try(item, value)));
@@ -33,7 +33,7 @@ export function validateView(type: Type | Type[]) {
         `Data did not please any view: [${(type as Type[])
           .map(({ name }) => name)
           .join(',')}]`,
-        HttpStatus.BAD_REQUEST
+        HttpStatus.BAD_REQUEST,
       );
     }
     async try(_view: Type | (Type | Type[])[], value: any) {

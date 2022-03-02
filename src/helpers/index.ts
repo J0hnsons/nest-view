@@ -4,7 +4,7 @@ import { symbols } from './enums/view-symbols';
 import { propMaker } from './prop-maker';
 import { viewMaker } from './view-maker';
 
-//Verify if class is a view or not
+// Verify if class is a view or not
 function verifyView(view: Type) {
   if (!Reflect.getMetadata(symbols.view, view)) {
     throw new Error(`"${view.name}" is not a view`);

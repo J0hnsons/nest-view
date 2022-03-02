@@ -1,4 +1,4 @@
-import { ApiResponseView, ApiBodyView } from '@decorators/swagger';
+import { ApiResponseView, ApiBodyView } from '@nest-view/decorators/swagger';
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { view, validateView } from '@nest-view';
 import { AppService } from './app.service';

@@ -2,7 +2,7 @@ import { Type } from '@nestjs/common';
 import { symbols } from './enums/view-symbols';
 import { propMaker } from './prop-maker';
 
-//Make a normalized object with a View
+// Make a normalized object with a View
 export function viewMaker(_view: Type): Record<string, propMaker> {
   const view = new _view();
   const result = {};
