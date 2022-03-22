@@ -29,10 +29,42 @@ $ npm install nest-view
 
 ## Usage
 
-### View
-
 The first step to use this module is to create a view
 
-```typescript
+### View example
 
+---
+
+```typescript
+import { PropView, View } from 'nest-view';
+
+@View()
+export class Example {
+  @PropView({ type: String })
+  name: string;
+
+  @PropView({ type: Number })
+  age: number;
+}
+```
+
+Now you're able to use this view to manipulate data and use to document your request's in swagger.
+
+### Swagger documentation
+
+---
+
+```typescript
+import { Body, Controller, Get } from '@nestjs/common';
+import { ApiBodyView } from 'nest-view';
+import { Example } from './view';
+
+@Controller()
+export class AppController {
+  @Get()
+  @ApiBodyView(Example)
+  getHello(@Body() body: Example) {
+    return;
+  }
+}
 ```

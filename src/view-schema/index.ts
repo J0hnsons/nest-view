@@ -3,6 +3,7 @@ import { maker } from '../helpers';
 import { Type } from '@nestjs/common';
 import { arraySchema } from './array-schema';
 import { propSchema } from './prop-schema';
+import { symbols } from '../helpers/enums/view-symbols';
 
 /**
  * Create schema with a view
@@ -15,7 +16,11 @@ export function viewToSchema(
   view: Type | (Type | Type[])[],
   pattern?: keyof ViewOptions,
 ) {
+  const viewPatterns: ViewOptions = Reflect.getMetadata(symbols.options, view);
   const viewObject = maker(view);
-  if (Array.isArray(viewObject)) return arraySchema(viewObject);
-  return propSchema(viewObject);
+  const schema = Array.isArray(viewObject)
+    ? arraySchema(viewObject)
+    : propSchema(viewObject);
+
+  return viewPatterns?.[pattern] ? viewPatterns[pattern](schema) : schema;
 }

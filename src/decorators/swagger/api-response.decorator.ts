@@ -35,7 +35,10 @@ export const ApiResponseView: ApiResponseView<ApiResponseViewOptions> = (
     const { view } = data;
     delete data.view;
     options = {
-      schema: viewToSchema(view, 'patternResponse'),
+      schema: viewToSchema(
+        view,
+        data.exception ? 'patternException' : 'patternResponse',
+      ),
       ...data,
     };
   } else {
